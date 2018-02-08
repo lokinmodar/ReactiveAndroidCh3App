@@ -6,13 +6,30 @@
     android:layout_height="match_parent"
     tools:context="br.com.theoldpinkeye.reactiveandroidch3app.MainActivity">
 
+
     <TextView
+        android:id="@+id/hello_world_salute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp"
+        android:layout_marginTop="4dp"
+
+        app:layout_constraintBottom_toTopOf="@+id/stock_updates_recycler_view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/stock_updates_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/hello_world_salute"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hello_world_salute">
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </android.support.constraint.ConstraintLayout>
