@@ -7,7 +7,7 @@ package br.com.theoldpinkeye.reactiveandroidch3app.yahoo.json;
 public class YahooStockResult {
     private YahooStockQuery query;
 
-    public YahooStockQuery getQuery(){
+    public YahooStockQuery getQuery() {
         return query;
     }
 }

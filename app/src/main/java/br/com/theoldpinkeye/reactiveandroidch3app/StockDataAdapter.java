@@ -4,8 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,13 +11,14 @@ import java.util.List;
  * Created by Just Us on 07/02/2018.
  */
 
-public class StockDataAdapter extends RecyclerView.Adapter<StockUpdateViewHolder>{
+public class StockDataAdapter extends RecyclerView.Adapter<StockUpdateViewHolder> {
     private final List<StockUpdate> data = new ArrayList<>();
 
     @Override
     public StockUpdateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_update_item, parent, false);
-        return new StockUpdateViewHolder(view);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_update_item, parent, false);
+        StockUpdateViewHolder vh = new StockUpdateViewHolder(v);
+        return vh;
     }
 
     @Override
@@ -32,18 +31,19 @@ public class StockDataAdapter extends RecyclerView.Adapter<StockUpdateViewHolder
 
     @Override
     public int getItemCount() {
-        return data.size() != 0 ? data.size() : 0;
+        return data.size();
     }
 
     public void add(StockUpdate newStockUpdate) {
-        for (StockUpdate stockUpdate : data){
-            if (stockUpdate.getStockSymbol().equals(newStockUpdate.getStockSymbol())){
-                if (stockUpdate.getPrice().equals((newStockUpdate.getPrice()))){
+        for (StockUpdate stockUpdate : data) {
+            if (stockUpdate.getStockSymbol().equals(newStockUpdate.getStockSymbol())) {
+                if (stockUpdate.getPrice().equals(newStockUpdate.getPrice())) {
                     return;
                 }
                 break;
             }
         }
+
         this.data.add(0, newStockUpdate);
         notifyItemInserted(0);
     }

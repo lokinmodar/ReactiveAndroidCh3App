@@ -2,15 +2,10 @@ package br.com.theoldpinkeye.reactiveandroidch3app.yahoo;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-/**
- * Created by Just Us on 08/02/2018.
- */
 
 public class RetrofitYahooServiceFactory {
 
@@ -25,7 +20,8 @@ public class RetrofitYahooServiceFactory {
             .baseUrl("https://query.yahooapis.com/v1/public/")
             .build();
 
-    public YahooService create(){
+    public YahooService create() {
         return retrofit.create(YahooService.class);
     }
+
 }

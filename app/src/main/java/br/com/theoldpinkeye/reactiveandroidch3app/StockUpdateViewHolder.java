@@ -19,9 +19,7 @@ import butterknife.ButterKnife;
  */
 
 public class StockUpdateViewHolder extends RecyclerView.ViewHolder {
-    private static final NumberFormat PRICE_FORMAT = new DecimalFormat("0,00");
-
-
+    private static final NumberFormat PRICE_FORMAT = new DecimalFormat("#0,00");
 
     @BindView(R.id.stock_item_symbol)
     TextView stockSymbol;
@@ -30,21 +28,20 @@ public class StockUpdateViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.stock_item_price)
     TextView price;
 
-    public StockUpdateViewHolder(View itemView) {
-        super(itemView);
-        ButterKnife.bind(this, itemView);
+    public StockUpdateViewHolder(View v) {
+        super(v);
+        ButterKnife.bind(this, v);
     }
 
     public void setStockSymbol(String stockSymbol) {
         this.stockSymbol.setText(stockSymbol);
     }
 
-    public void setDate(Date date) {
-        this.date.setText(DateFormat.format("yyyy-MM-dd hh:mm", date));
-    }
-
     public void setPrice(BigDecimal price) {
         this.price.setText(PRICE_FORMAT.format(price.floatValue()));
     }
 
+    public void setDate(Date date) {
+        this.date.setText(DateFormat.format("yyyy-MM-dd hh:mm", date));
+    }
 }

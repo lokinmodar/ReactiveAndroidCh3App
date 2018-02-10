@@ -33,9 +33,7 @@ public class StockUpdate implements Serializable {
         return date;
     }
 
-    public static StockUpdate create(YahooStockQuote r){
+    public static StockUpdate create(YahooStockQuote r) {
         return new StockUpdate(r.getSymbol(), r.getLastTradePriceOnly(), new Date());
     }
-
-
 }

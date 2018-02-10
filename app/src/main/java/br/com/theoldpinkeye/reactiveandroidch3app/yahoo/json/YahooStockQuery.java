@@ -11,12 +11,11 @@ public class YahooStockQuery {
     private Date created;
     private YahooStockResults results;
 
-    public YahooStockResults getResults(){
+    public YahooStockResults getResults() {
         return results;
     }
 
-    public Date getCreated(){
+    public Date getCreated() {
         return created;
     }
-
 }
