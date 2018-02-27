@@ -11,6 +11,7 @@ import br.com.theoldpinkeye.reactiveandroidch3app.yahoo.json.YahooStockQuote;
  */
 
 public class StockUpdate implements Serializable {
+    private Integer id;
     private final String stockSymbol;
     private final BigDecimal price;
     private final Date date;
@@ -19,6 +20,9 @@ public class StockUpdate implements Serializable {
         this.stockSymbol = stockSymbol;
         this.price = price;
         this.date = date;
+    }
+    public Integer getId() {
+        return id;
     }
 
     public String getStockSymbol() {
@@ -33,7 +37,14 @@ public class StockUpdate implements Serializable {
         return date;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public static StockUpdate create(YahooStockQuote r) {
         return new StockUpdate(r.getSymbol(), r.getLastTradePriceOnly(), new Date());
     }
+
+
+
 }
