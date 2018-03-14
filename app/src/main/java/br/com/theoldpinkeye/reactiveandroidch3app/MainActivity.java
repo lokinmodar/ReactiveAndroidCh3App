@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import br.com.theoldpinkeye.reactiveandroidch3app.storio.StorIOFactory;
 import br.com.theoldpinkeye.reactiveandroidch3app.yahoo.RetrofitYahooServiceFactory;
 import br.com.theoldpinkeye.reactiveandroidch3app.yahoo.YahooService;
 import butterknife.BindView;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 .map(r -> r.getQuery().getResults().getQuote())
                 .flatMap(Observable::fromIterable)
                 .map(StockUpdate::create)
+                .doOnNext(this::saveStockUpdate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError(e -> Toast.makeText(getApplicationContext(),"Sem dados para exibir!",Toast.LENGTH_LONG).show())
                 .onErrorReturnItem(new StockUpdate("NONE", new BigDecimal("0.00"), new Date()))
@@ -87,4 +89,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d("APP", stage + ":" + Thread.currentThread().getName());
     }
 
+    private void saveStockUpdate(StockUpdate stockUpdate) {
+        log("saveStockUpdate", stockUpdate.getStockSymbol());
+        StorIOFactory.get(this)
+                .put()
+                .object(stockUpdate)
+                .prepare()
+                .asRxSingle()
+                .subscribe();
+    }
 }
